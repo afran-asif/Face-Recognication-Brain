@@ -6,7 +6,7 @@ import Rank from "./components/Rank/Rank";
 import FaceRecognization from "./components/FaceRecognization/FaceRecognization";
 import "./App.css";
 import ParticlesBg from "particles-bg";
-
+import SignIn from "./components/SignIn/SignIn";
 // Clarifai model info
 const MODEL_ID = "face-detection";  
 const PAT = import.meta.env.VITE_CLARIFAI_API_KEY;
@@ -81,6 +81,7 @@ class App extends Component {
       <>
         <div>
           <Navigation />
+          <SignIn />
           <Logo />
           <Rank />
           <ImageLinkFrom
