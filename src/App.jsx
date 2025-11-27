@@ -7,6 +7,8 @@ import FaceRecognization from "./components/FaceRecognization/FaceRecognization"
 import "./App.css";
 import ParticlesBg from "particles-bg";
 import SignIn from "./components/SignIn/SignIn";
+import Register from "./components/Register/Register";
+
 // Clarifai model info
 const MODEL_ID = "face-detection";  
 const PAT = import.meta.env.VITE_CLARIFAI_API_KEY;
@@ -17,7 +19,18 @@ class App extends Component {
     this.state = {
       input: "",
       imgUrl: "",
+      route: "signin",
+      isSignedIn: false
     };
+  }
+
+  onRouteChange =async (route) => {
+    if( route === 'signin'){
+      this.setState({ isSignedIn : false })
+    }else if( route === 'home'){
+      this.setState({ isSignedIn : true })
+    }
+    this.setState({route: route})
   }
 
   onInputChange = (event) => {
@@ -38,6 +51,7 @@ class App extends Component {
         },
       ],
     });
+
 
     const requestOptions = {
       method: "POST",
@@ -80,16 +94,25 @@ class App extends Component {
     return (
       <>
         <div>
-          <Navigation />
-          <SignIn />
-          <Logo />
-          <Rank />
-          <ImageLinkFrom
-            onInputChange={this.onInputChange}
-            onSubmitButton={this.onSubmitButton}
-          />
-          <FaceRecognization imgUrl={this.state.imgUrl} />
-        </div>
+          <Navigation isSignedIn={this.state.isSignedIn} onRouteChange={this.onRouteChange}/>
+          { this.state.route === 'home' 
+          ?<div>
+              <Logo />
+              <Rank />
+              <ImageLinkFrom
+                onInputChange={this.onInputChange}
+                onSubmitButton={this.onSubmitButton}
+              />
+              <FaceRecognization imgUrl={this.state.imgUrl} />
+            </div>
+          :
+            (
+              this.state.route === 'signin'
+            ?<SignIn onRouteChange={this.onRouteChange}/>
+            :<Register onRouteChange={this.onRouteChange}/>
+            ) 
+          }
+        </div> 
         <ParticlesBg type="cobweb" color="#ffffff" num={200} bg={true} />
       </>
     );
