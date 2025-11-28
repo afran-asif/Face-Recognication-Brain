@@ -7,8 +7,6 @@ const SignIn = ({onRouteChange}) => {
                 <h2>Singin Form</h2>
                 <label className="m" htmlFor="">Username:</label><br/>
                 <input type="text" name="name" placeholder="Enter your username" /><br/>
-                <label htmlFor="">Email:</label><br/>
-                <input type="email" name="email" placeholder="Enter your email" /><br/>
                 <label htmlFor="">Password:</label><br/>
                 <input type="password" name="password" placeholder="********" /><br />
                 <input onClick={()=>onRouteChange('home')} type="submit" value="sign in"/>

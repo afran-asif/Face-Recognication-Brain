@@ -25,11 +25,6 @@ class App extends Component {
   }
 
   onRouteChange =async (route) => {
-    if( route === 'signin'){
-      this.setState({ isSignedIn : false })
-    }else if( route === 'home'){
-      this.setState({ isSignedIn : true })
-    }
     this.setState({route: route})
   }
 
@@ -94,7 +89,7 @@ class App extends Component {
     return (
       <>
         <div>
-          <Navigation isSignedIn={this.state.isSignedIn} onRouteChange={this.onRouteChange}/>
+          <Navigation route={this.state.route} onRouteChange={this.onRouteChange}/>
           { this.state.route === 'home' 
           ?<div>
               <Logo />

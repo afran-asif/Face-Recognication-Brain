@@ -12,10 +12,9 @@ const Register = ({onRouteChange}) => {
                 <label htmlFor="">Password:</label><br/>
                 <input type="password" name="password" placeholder="********" /><br />
                 <input onClick={()=>onRouteChange('home')} type="submit" value="Register"/>
-                <p className="pointer" onClick={()=>onRouteChange('signin')}>Sign in</p>
+                <p className="pointer" onClick={()=>onRouteChange('signin')}>Sign up</p>
             </div>
         </div>
-        
-    )
+    );
 }
 export default Register;
